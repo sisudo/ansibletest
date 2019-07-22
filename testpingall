@@ -1,4 +1,12 @@
-- hosts:
-    - all
+---
+
+- hosts: windows
+  gather_facts: "false"
   tasks:
-    - action: ping
+    - name: "Copy a single file"
+      win_copy:
+        src: '/etc/ansible/playbooks/script.ps1'
+        dest: 'c:\Temp\script.ps1'
+    - name: "Start Windows Update"
+      script: "script.ps1"
+
